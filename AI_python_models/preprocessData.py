@@ -65,7 +65,7 @@ def prepare_text_classic(df_original: pd.DataFrame, column_names: list) -> pd.Da
         lenWordsColumn = column_name+'_len_words'
 
         df[processedColumn] = df[column_name].apply(clean_text_basic)     # Limpieza
-        df[tokenColumn] = df[processedColumn].apply(word_tokenize)           # Tokenización
+        df[tokenColumn] = df[processedColumn].apply(word_tokenize)        # Tokenización
 
         # Stop-words
         sw = set(stopwords.words('english'))
@@ -106,6 +106,6 @@ if __name__ == '__main__':
 
     df = prepare_date_for_model(df)
 
-    df = prepare_text_classic(df, ['statement','justification'])
+    df = prepare_text_classic(df, ['statement','speaker_description','justification'])
 
     df.to_csv('liar2_test.csv',index=False)
