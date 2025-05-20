@@ -62,7 +62,7 @@ def prepare_text_classic(df_original: pd.DataFrame, column_names: list) -> pd.Da
     for column_name in column_names:
         processedColumn = 'processed_'+column_name
         tokenColumn = 'tokens_'+column_name
-        cleanColumn = 'clean_statement_'+column_name
+        cleanColumn = 'clean_'+column_name
         lenCharsColumn = column_name+'_len_chars'
         lenWordsColumn = column_name+'_len_words'
 
