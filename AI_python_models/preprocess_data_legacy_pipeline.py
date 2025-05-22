@@ -79,6 +79,21 @@ def prepare_text_classic(df_original: pd.DataFrame, column_names: list) -> pd.Da
 
         # Reconstruir y métricas
         df[cleanColumn] = df[tokenColumn].apply(lambda toks: ' '.join(toks))
+
+        if column_name == 'statement':
+            df[cleanColumn] = df[cleanColumn].apply(
+                lambda txt: ' '.join(txt.split()[:21])[:153]  #p98 values
+            )
+        elif column_name == 'speaker_description':
+            df[cleanColumn] = df[cleanColumn].apply(
+                lambda txt: ' '.join(txt.split()[:50])[:389] #p95 values
+            )
+        elif column_name == 'justification':
+            df[cleanColumn] = df[cleanColumn].apply(
+                lambda txt: ' '.join(txt.split()[:150])[:1000] # > p99 & < p100
+            )
+
+
         df[lenCharsColumn] = df[cleanColumn].str.len()
         df[lenWordsColumn] = df[cleanColumn].str.split().str.len()
 
@@ -273,4 +288,4 @@ if __name__ == '__main__':
 
     df = remove_unused_columns(df)
 
-    df.to_csv('liar2_test.csv',index=False)
+    df.to_csv('liar2_preprocessed.csv',index=False)

@@ -1,0 +1,9 @@
+datasets
+pandas
+matplotlib
+seaborn
+transformers
+torch
+nltk
+numpy
+wordcloud
