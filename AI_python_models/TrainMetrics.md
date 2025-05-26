@@ -1,6 +1,6 @@
-==========================================
-      PRIMER ENTRENAMIENTO DE MODELOS
-==========================================
+===========================================================================================================
+      ENTRENAMIENTO DE MODELOS BASE (PIPELINES BASE SIN OVERSAMPLING - SOLO TEST DE QUE FUNCIONAN)
+===========================================================================================================
 
 
 Mejores params: {'clf__C': 0.1}
@@ -114,3 +114,128 @@ weighted avg       0.49      0.46      0.46      3444
     accuracy                           0.60      3445
    macro avg       0.60      0.60      0.60      3445
 weighted avg       0.61      0.60      0.60      3445
+
+====================================================================================
+                     PRIMER ENTRENAMIENTO DE MODELOS 
+            (+Transformadores de texto que incluyen characters)
+   (+Extra stopwords para borrar palabras que no aportan mucho significado)
+      (+Uso de SMOTE para realizar oversampling de los datos del modelo)
+====================================================================================
+
+Mejores params: {'clf__C': 0.01}
+
+=== SVM best params ===
+ {'clf__C': 0.01}
+
+=== SVM Classification Report on VAL ===
+              precision    recall  f1-score   support
+
+           0       0.53      0.63      0.58       455
+           1       0.71      0.56      0.63       991
+           2       0.63      0.61      0.62       540
+           3       0.64      0.59      0.61       556
+           4       0.62      0.61      0.61       514
+           5       0.46      0.69      0.55       388
+
+    accuracy                           0.60      3444
+   macro avg       0.60      0.62      0.60      3444
+weighted avg       0.62      0.60      0.61      3444
+
+Mejores params: {'clf__C': 1}
+
+=== LogReg best params ===
+ {'clf__C': 1}
+
+=== LogReg Classification Report on VAL ===
+              precision    recall  f1-score   support
+
+           0       0.56      0.58      0.57       455
+           1       0.66      0.63      0.64       991
+           2       0.64      0.61      0.62       540
+           3       0.63      0.59      0.61       556
+           4       0.61      0.61      0.61       514
+           5       0.51      0.62      0.56       388
+
+    accuracy                           0.61      3444
+   macro avg       0.60      0.61      0.60      3444
+weighted avg       0.61      0.61      0.61      3444
+
+Mejores params: {'clf__max_depth': 10, 'clf__n_estimators': 200}
+
+=== RF best params ===
+ {'clf__max_depth': 10, 'clf__n_estimators': 200}
+
+=== RF Classification Report on VAL ===
+              precision    recall  f1-score   support
+
+           0       0.56      0.59      0.57       455
+           1       0.72      0.53      0.61       991
+           2       0.62      0.55      0.59       540
+           3       0.47      0.47      0.47       556
+           4       0.50      0.57      0.53       514
+           5       0.41      0.65      0.51       388
+
+    accuracy                           0.55      3444
+   macro avg       0.55      0.56      0.55      3444
+weighted avg       0.58      0.55      0.55      3444
+
+Mejores params: {'clf__learning_rate': 0.1, 'clf__n_estimators': 100}
+
+=== GB best params ===
+ {'clf__learning_rate': 0.1, 'clf__n_estimators': 100}
+
+=== GB Classification Report on VAL ===
+              precision    recall  f1-score   support
+
+           0       0.55      0.55      0.55       455
+           1       0.68      0.60      0.64       991
+           2       0.66      0.55      0.60       540
+           3       0.50      0.52      0.51       556
+           4       0.56      0.57      0.57       514
+           5       0.44      0.63      0.52       388
+
+    accuracy                           0.57      3444
+   macro avg       0.57      0.57      0.56      3444
+weighted avg       0.59      0.57      0.58      3444
+
+Mejores params: {'clf__alpha': 0.5}
+
+=== NB best params ===
+ {'clf__alpha': 0.5}
+
+=== NB Classification Report on VAL ===
+              precision    recall  f1-score   support
+
+           0       0.43      0.57      0.49       455
+           1       0.60      0.31      0.41       991
+           2       0.43      0.49      0.46       540
+           3       0.40      0.44      0.42       556
+           4       0.39      0.44      0.41       514
+           5       0.35      0.45      0.39       388
+
+    accuracy                           0.43      3444
+   macro avg       0.43      0.45      0.43      3444
+weighted avg       0.46      0.43      0.43      3444
+
+
+**Mejor modelo: LogReg**
+
+=== Test final ===
+              precision    recall  f1-score   support
+
+           0       0.59      0.58      0.58       454
+           1       0.62      0.62      0.62       991
+           2       0.58      0.56      0.57       541
+           3       0.60      0.59      0.60       557
+           4       0.58      0.57      0.58       515
+           5       0.54      0.63      0.58       387
+
+    accuracy                           0.59      3445
+   macro avg       0.59      0.59      0.59      3445
+weighted avg       0.59      0.59      0.59      3445
+
+====================================================================================
+                     SEGUNDO ENTRENAMIENTO DE MODELOS 
+      Voy a probar a reducir el min_df en los distintos transformadores de texto
+      Además voy a añadir el stage de chi2 para eliminar palabras menos relevantes
+====================================================================================
