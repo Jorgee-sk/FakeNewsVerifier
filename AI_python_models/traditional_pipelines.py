@@ -3,6 +3,8 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler, O
 from sklearn.compose import ColumnTransformer
 from sklearn.decomposition   import TruncatedSVD
 from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.preprocessing import FunctionTransformer, MaxAbsScaler
+from scipy import sparse
 from sklearn.feature_extraction.text import CountVectorizer
 from traditional_text_transformers import get_base_tfidf_text_features, get_tfidf_text_features, combined_stop
 
@@ -66,12 +68,14 @@ bool_cat_pipeline = Pipeline([
 
 tfidf_chi_pipeline = Pipeline([
     ('tfidf',  get_tfidf_text_features()),
-    ('select', SelectKBest(chi2, k=2000))
+    ('select', SelectKBest(chi2, k=2000)),
+    ('scale',  MaxAbsScaler()),  
 ])
 
 tfidf_base_chi_pipeline = Pipeline([
     ('tfidf',  get_base_tfidf_text_features()),
-    ('select', SelectKBest(chi2, k=2000))
+    ('select', SelectKBest(chi2, k=2000)),
+    ('scale',  MaxAbsScaler()),  
 ])
 
 # -------------------------------------------------------------
@@ -124,3 +128,15 @@ def get_pre_bow():
         ('cats',    bool_cat_pipeline,  cat_cols),
     ])
 
+
+def to_dense_array(X):
+    """Convierte sparse → dense; deja pasar los arrays densos."""
+    if sparse.issparse(X):
+        return X.toarray()
+    return X
+
+# y luego en tu pipeline:
+to_dense = FunctionTransformer(
+    func=to_dense_array,  # función nombrada, picklable
+    accept_sparse=True
+)

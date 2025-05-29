@@ -9,7 +9,7 @@ def data_split():
 
     # Split estratificado train / temp
     X_train, X_temp, y_train, y_temp = train_test_split(
-        X, Y, test_size=0.3, stratify=Y, random_state=200900
+        X, Y, test_size=0.2, stratify=Y, random_state=200900
     )
 
     # Split estratificado val / test

@@ -9,3 +9,5 @@ numpy
 wordcloud
 joblib
 imblearn
+scipy
+xgboost

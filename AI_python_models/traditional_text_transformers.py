@@ -21,13 +21,15 @@ def get_tfidf_text_features():
     min_df=0.001, 
     max_df=0.9,
     stop_words=combined_stop,
-    token_pattern=r"(?u)\b\w\w+\b"
+    token_pattern=r"(?u)\b\w\w+\b",
+    norm=None
     )
 
     char_vect = TfidfVectorizer(
         analyzer='char_wb',
         ngram_range=(3,5),
-        min_df=0.001
+        min_df=0.001,
+        norm=None
     )
 
     return FeatureUnion([
@@ -43,12 +45,14 @@ def get_base_tfidf_text_features():
         min_df=0.001, 
         max_df=0.9,
         stop_words=combined_stop,
-        token_pattern=r"(?u)\b\w\w+\b"
+        token_pattern=r"(?u)\b\w\w+\b",
+        norm=None
     )
     char_vect_base = TfidfVectorizer(
         analyzer='char_wb',
         ngram_range=(3,5),
-        min_df=0.001
+        min_df=0.001,
+        norm=None
     )
 
     return FeatureUnion([
