@@ -388,3 +388,154 @@ weighted avg       0.67      0.66      0.66      2296
     accuracy                           0.65      2297
    macro avg       0.67      0.63      0.64      2297
 weighted avg       0.67      0.65      0.65      2297
+
+============================================
+
+=========== TRANSFORMERS (BERT) ============
+
+============================================
+
+**Primera iteración del modelo** 
+Epoch 6/6 | Train Loss: 0.3331 | Train Acc: 0.4746 | Train F1: 0.4608 || Val Loss: 1.4534 | Val Acc: 0.3911 | Val F1: 0.3930
+
+=== TEST SET ===
+Test Loss: 1.4860 | Test Acc: 0.3875 | Test F1: 0.3917
+
+Matriz de Confusión (filas=verdadero, columnas=predicho):
+[[151  55  24  29  10  34]
+ [232  93  93  86  50 107]
+ [ 22  21 172  67  39  40]
+ [  5  14  34 191  68  59]
+ [  4   7  20  94 139  79]
+ [ 11   9   5  52  37 144]]
+
+Reporte por clase:
+              precision    recall  f1-score   support
+
+  pants-fire     0.3553    0.4983    0.4148       303
+       false     0.4673    0.1407    0.2163       661
+ barely-true     0.4943    0.4765    0.4852       361
+   half-true     0.3680    0.5148    0.4292       371
+ mostly-true     0.4052    0.4052    0.4052       343
+        true     0.3110    0.5581    0.3994       258
+
+    accuracy                         0.3875      2297
+   macro avg     0.4002    0.4323    0.3917      2297
+weighted avg     0.4139    0.3875    0.3679      2297
+
+-> Aumentado MAX_LEN
+-> Añadida nueva capa a metadatos y reducido el dropout a 0
+-> Modificado el tamaño de batch de 4 a 6
+-> Añadido focal loss y oversampling y configurados ciertos parámetros
+
+**Segunda iteración del modelo** 
+Epoch 1/6 | Train Loss: 2.7200 | Train Acc: 0.2401 | Train F1: 0.2230 || Val Loss: 1.3989 | Val Acc: 0.3001 | Val F1: 0.2908
+Epoch 2/6 | Train Loss: 0.2914 | Train Acc: 0.4442 | Train F1: 0.4264 || Val Loss: 1.1375 | Val Acc: 0.4020 | Val F1: 0.4032
+Epoch 3/6 | Train Loss: 0.2128 | Train Acc: 0.5539 | Train F1: 0.5350 || Val Loss: 0.9445 | Val Acc: 0.4983 | Val F1: 0.4999
+Epoch 4/6 | Train Loss: 0.1706 | Train Acc: 0.6060 | Train F1: 0.5895 || Val Loss: 0.7915 | Val Acc: 0.5122 | Val F1: 0.5216
+Epoch 5/6 | Train Loss: 0.1447 | Train Acc: 0.6435 | Train F1: 0.6299 || Val Loss: 0.7590 | Val Acc: 0.5196 | Val F1: 0.5290
+Epoch 6/6 | Train Loss: 0.1278 | Train Acc: 0.6701 | Train F1: 0.6552 || Val Loss: 0.7203 | Val Acc: 0.5422 | Val F1: 0.5508 
+
+=== TEST SET ===
+Test Loss: 0.6905 | Test Acc: 0.5620 | Test F1: 0.5686
+
+Matriz de Confusión (filas=verdadero, columnas=predicho):
+[[224  41  21   4   5   8]
+ [188 217 129  34  25  68]
+ [ 16  23 238  37  31  16]
+ [  5   3  62 201  78  22]
+ [  1   2  19  42 208  71]
+ [  5   6   6   9  29 203]]
+
+Reporte por clase:
+              precision    recall  f1-score   support
+
+  pants-fire     0.5103    0.7393    0.6038       303
+       false     0.7432    0.3283    0.4554       661
+ barely-true     0.5011    0.6593    0.5694       361
+   half-true     0.6147    0.5418    0.5759       371
+ mostly-true     0.5532    0.6064    0.5786       343
+        true     0.5232    0.7868    0.6285       258
+
+    accuracy                         0.5620      2297
+   macro avg     0.5743    0.6103    0.5686      2297
+weighted avg     0.6006    0.5620    0.5502      2297
+
+-> Aumentado warmup a 0.15
+-> Subido dropout de 0 a 0.1
+-> Balanceado peso en alpha de la clase false para intentar mejorar el recall
+
+**Tercera iteracion**
+Epoch 6/6 | Train Loss: 1.1049 | Train Acc: 0.4611 | Train F1: 0.4389 || Val Loss: 2.5282 | Val Acc: 0.4669 | Val F1: 0.4572
+
+=== TEST SET ===
+Test Loss: 2.4115 | Test Acc: 0.4750 | Test F1: 0.4655
+
+-> Malisimo , probamos otras cosas
+-> Aumentamos epochs a 8
+-> Aumentamos LR a 3e-5
+-> Bajamos dropout de 0.1 a 0.05 en metadata y a 0 en clasif
+-> Balanceado peso en alpha de la clase false para intentar mejorar el recall subido a .8
+
+**Cuarta iteracion**
+=== TEST SET ===
+Test Loss: 1.6658 | Test Acc: 0.4902 | Test F1: 0.4931
+
+Reporte por clase:
+              precision    recall  f1-score   support
+
+  pants-fire     0.4319    0.7855    0.5574       303
+       false     0.7143    0.1210    0.2070       661
+ barely-true     0.4147    0.6870    0.5172       361
+   half-true     0.5671    0.5013    0.5322       371
+ mostly-true     0.5325    0.5977    0.5632       343
+        true     0.5232    0.6550    0.5818       258
+
+    accuracy                         0.4902      2297
+   macro avg     0.5306    0.5579    0.4931      2297
+weighted avg     0.5576    0.4902    0.4498      2297
+
+
+-> Mejora general pero false baja terrible , probamos otras cosas
+-> Aumentamos epochs a 8
+-> Reducimos LR a 1e-5
+-> Balanceado peso en alpha de la clase false para intentar mejorar el recall subido a 1.5
+-> Reducido Gamma a 1
+
+**Quinta iteracion**
+=== TEST SET ===
+Test Loss: 2.3318 | Test Acc: 0.5686 | Test F1: 0.5714
+
+Reporte por clase:
+              precision    recall  f1-score   support
+
+  pants-fire     0.5648    0.6040    0.5837       303
+       false     0.6521    0.4962    0.5636       661
+ barely-true     0.4566    0.6704    0.5432       361
+   half-true     0.6654    0.4663    0.5483       371
+ mostly-true     0.5753    0.5569    0.5659       343
+        true     0.5431    0.7326    0.6238       258
+
+    accuracy                         0.5686      2297
+   macro avg     0.5762    0.5877    0.5714      2297
+weighted avg     0.5883    0.5686    0.5677      2297
+
+**Sexta iteracion**
+Epoch 8/8 | Train Loss: 0.4359 | Train Acc: 0.6644 | Train F1: 0.6647 || Val Loss: 0.5713 | Val Acc: 0.5976 | Val F1: 0.5997
+
+=== TEST SET ===
+Test Loss: 0.5367 | Test Acc: 0.6152 | Test F1: 0.6161
+
+Reporte por clase:
+              precision    recall  f1-score   support
+
+  pants-fire     0.5647    0.6337    0.5972       303
+       false     0.6495    0.5915    0.6192       661
+ barely-true     0.7208    0.5291    0.6102       361
+   half-true     0.5315    0.7278    0.6143       371
+ mostly-true     0.6233    0.5452    0.5816       343
+        true     0.6454    0.7054    0.6741       258
+
+    accuracy                         0.6152      2297
+   macro avg     0.6225    0.6221    0.6161      2297
+weighted avg     0.6261    0.6152    0.6146      2297

@@ -11,3 +11,4 @@ joblib
 imblearn
 scipy
 xgboost
+shap
