@@ -158,7 +158,11 @@ def prepare_context_generic(df_original: pd.DataFrame) -> pd.DataFrame:
     # Mapear a categorias
     df['context_cat'] = df['context'].apply(map_context_generic)
     # One-hot
-    dummies = pd.get_dummies(df['context_cat'], prefix='ctx', drop_first=True)
+    dummies = pd.get_dummies(df['context_cat'], prefix='ctx', drop_first=False)
+    dummies = dummies.drop(columns='ctx_advertising')
+
+    if 'ctx_location' not in dummies.columns:
+        dummies['ctx_location'] = False
 
     df_result = pd.concat([df, dummies], axis=1)
     return df_result
