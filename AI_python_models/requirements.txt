@@ -1,0 +1,14 @@
+datasets
+pandas
+matplotlib
+seaborn
+transformers
+torch
+nltk
+numpy
+wordcloud
+joblib
+imblearn
+scipy
+xgboost
+shap
