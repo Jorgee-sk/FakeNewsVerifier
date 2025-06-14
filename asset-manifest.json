@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/FakeNewsVerifier/static/css/main.c6362661.css",
-    "main.js": "/FakeNewsVerifier/static/js/main.4103b678.js",
+    "main.css": "/FakeNewsVerifier/static/css/main.e988e17a.css",
+    "main.js": "/FakeNewsVerifier/static/js/main.beb9018b.js",
     "static/js/453.2417c99b.chunk.js": "/FakeNewsVerifier/static/js/453.2417c99b.chunk.js",
     "index.html": "/FakeNewsVerifier/index.html",
-    "main.c6362661.css.map": "/FakeNewsVerifier/static/css/main.c6362661.css.map",
-    "main.4103b678.js.map": "/FakeNewsVerifier/static/js/main.4103b678.js.map",
+    "main.e988e17a.css.map": "/FakeNewsVerifier/static/css/main.e988e17a.css.map",
+    "main.beb9018b.js.map": "/FakeNewsVerifier/static/js/main.beb9018b.js.map",
     "453.2417c99b.chunk.js.map": "/FakeNewsVerifier/static/js/453.2417c99b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6362661.css",
-    "static/js/main.4103b678.js"
+    "static/css/main.e988e17a.css",
+    "static/js/main.beb9018b.js"
   ]
 }
